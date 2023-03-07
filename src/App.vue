@@ -7,11 +7,19 @@
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
-
+import { errorHandler, registerError } from "./utils/errorHandler";
 export default {
   name: "App",
   components: {
     HelloWorld,
+  },
+  mounted() {
+    registerError((error) => {
+      console.log("🚀 ~ file: App.vue:18 ~ registerError ~ error:", error);
+    });
+    errorHandler(() => {
+      throw new TypeError("app");
+    });
   },
 };
 </script>
